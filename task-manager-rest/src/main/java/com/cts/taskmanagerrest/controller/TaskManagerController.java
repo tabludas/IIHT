@@ -60,6 +60,13 @@ public class TaskManagerController {
 		taskManagerService.deleteTask(task);
 	}
 
+	@PostMapping(path="/softDeleteTask")
+	public void softDeleteTask(@RequestBody Task task){
+		LOGGER.info("Soft Delete Task--> "+task);
+		taskManagerService.softDeleteAndUpdateTask(task);
+
+	}
+
 	//Testing purpose
 	//http://localhost:8085/api/taskmanager/getTaskVal?val1=prasenjit&val2=das
 	@GetMapping(path = "/getTaskVal")

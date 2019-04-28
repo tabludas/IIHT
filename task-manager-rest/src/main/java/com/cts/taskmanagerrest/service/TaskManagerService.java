@@ -45,10 +45,16 @@ public class TaskManagerService {
 
 	}
 
+	@Transactional
 	public void deleteTask(Task task) throws DataAccessException{
 		LOGGER.info("Deleting Task "+task);
 		taskManagerRepository.delete(task);
+	}
 
+	@Transactional
+	public void softDeleteAndUpdateTask(Task task) throws DataAccessException{
+		LOGGER.info("Soft Deleting Task "+task);
+		taskManagerRepository.softDelete(task.getEditEnabled(),task.getTaskId());
 	}
 
 }
